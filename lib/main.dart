@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -36,27 +37,80 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(milliseconds: 3000), () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+    Timer(Duration(milliseconds: 10000), () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => HomePage()));
     });
     return Scaffold(
-      body: Center(
-        child: Text("Nguyễn Minh Đức - 20110461, Nguyễn Văn An - 20110434"),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Introduction Page'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(child: Text("Nguyễn Đình Hiếu - 20142498")),
+              SizedBox(height: 20.0),
+              Container(
+                width: 150.0,
+                height: 150.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 2.0,
+                  ),
+                ),
+                child: ClipOval(
+                  child: Image.network(
+                    'https://th.bing.com/th/id/OIP.cJovERCS9GiMvDOAKa8mygHaGl?w=540&h=480&rs=1&pid=ImgDetMain',
+                    width: 100.0,
+                    height: 100.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      print('Đã click Facebook');
+                    },
+                    child: Text('Facebook'),
+                  ),
+                  SizedBox(width: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      print('Đã click Email');
+                    },
+                    child: Text('Email'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Home Page"),),);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      body: Center(
+        child: Text('This is the Home Page'),
+      ),
+    );
   }
 }
